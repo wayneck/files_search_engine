@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件搜索引擎</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>    
+
+    <style>
+            .wrap{
+            margin:0 auto;
+            overflow: hidden;
+        }
+        </style>
+    <style>
+        #nav { background: #ccffff; position:fixed;right:0;top:3% }
+    </style>        
+</head>
+<body>
+
+    
+
+    <div id="nav"> 
+            <p>最近更新的20个文件</p>   
+            {% for per_file in new_files %}
+                <p>{{per_file}}</p>
+            {% endfor %}
+    </div>
+
+
+   
+            <h1>搜索你要的文件</h1>
+            <i> {{update_time}}</i>>
+            <!--<form action="" enctype='multipart/form-data' method='POST'>
+                <input type="file" name="file" style="margin-top:20px;"/>
+            -->
+            <form action="" method="POST">
+                <i>文件名包含的字符：</i>
+                <input type="text" name="fileName">
+                </datalist>
+                <!--
+                <i>文件大小：</i>
+                <input type="text" name="fileSize">
+                </datalist>
+                <action="demo-form.php">
+                    时间: <input type="date" name="fileTime"> 
+                    <div id="container" style="width: 550px; height: 10px; margin: 10px"></div>
+                -->
+                <input type="submit" style="margin-top:10px;"/>
+                <br>
+                <i>支持单个词，或者使用“+”进行组合搜索（如A+B）</i>
+                
+            </form>
+
+
+</body>
+</html>

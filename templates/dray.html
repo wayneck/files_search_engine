@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>动态操作表格</title>
+<script>
+var flag=false,number=2;
+function addRow(recordStr){
+    flag=!flag;
+    var oneRecord = recordStr.split(",");
+
+    //添加一行
+    var newTr=table1.insertRow(table1.rows.length);
+    //添加两列
+    var newName=newTr.insertCell();
+    var newTime=newTr.insertCell();
+    var newSize=newTr.insertCell();
+    var newPath=newTr.insertCell();
+    //设置列内容和属性
+
+    number++;
+    newName.innerText=oneRecord[0];
+    newTime.innerText=oneRecord[1];
+    newSize.innerText=oneRecord[2];
+    newPath.innerText=oneRecord[3];
+    
+    if(flag){
+        newTr.style.backgroud="E0FFFF";
+    }
+    else{
+        newTr.style.backgroud="90FF90";
+    }
+}
+function delRow(){
+    if(number>1){
+        
+        flag=!flag;
+        table1.deleteRow(table1.rows.length-1);
+        number--;
+    }
+}
+
+</script>
+</head>
+
+<body>
+<table width="200" cellspacing="1" id="table1" style="font-size:14px; border:1px solid #cad9ea;">
+<tr bgcolor="#90EE90">
+<td>第1行</td>
+<td></td>
+</tr>
+<tr bgcolor="#909090">
+<td>第2行</td>
+<script>
+testStr = "asdf,34566,34,rrrggg,rrrr"
+addRow(testStr)
+</script>
+<td></td>
+</tr>
+</table>
+<input type="button" value="插入行" onClick="addRow()"/>  
+<input type="button" value="删除行" onClick="delRow()"/>
+</body>
+</html>

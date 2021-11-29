@@ -1,0 +1,94 @@
+<html>
+<head>
+   <meta charset="UTF-8" />
+   <title>wayne chart show</title>
+   <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+   <script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
+<body>
+
+
+<div id="time"></div>
+
+<div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+<script language="JavaScript">
+
+
+function showTime(){
+"use strict";
+//创建Date对象获取系统星期和时分秒
+  var showtime=new Date().getDay() + " " + new Date().getHours() + ":" + new Date().getMinutes() + ":" 
+  + new Date().getSeconds();
+//将获取到的星期数字转换成平时我们看到的字符串形式
+
+showtime=new Date().getMonth()+"-"+new Date().getDate()+ "<br>" + new Date().getHours() + ":" + new Date().getMinutes() + ":" 
+            + new Date().getSeconds();
+//获取元素ID
+  var elementDiv=document.getElementById("time");
+  elementDiv.innerHTML=showtime; 
+  }
+  window.setInterval("showTime()",1000);
+
+$(document).ready(function() {
+   var title = {
+       text: '月平均气温'   
+   };
+   var subtitle = {
+        text: 'Source: runoob.com'
+   };
+   var xAxis = {
+       categories: ['一月', '二月', '三月', '四月', '五月', '六月'
+              ,'七月', '八月', '九月', '十月', '十一月', '十二月']
+   };
+   var yAxis = {
+      title: {
+         text: 'Temperature (\xB0C)'
+      },
+      plotLines: [{
+         value: 0,
+         width: 1,
+         color: '#808080'
+      }]
+   };   
+
+   var tooltip = {
+      valueSuffix: '\xB0C'
+   }
+
+   var legend = {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle',
+      borderWidth: 0
+   };
+
+   var series =  [
+      {
+         name: 'Tokyo',
+         data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,
+            26.5, 23.3, 18.3, 13.9, 9.6]
+      }, 
+      {
+         name: 'London',
+         data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 
+            16.6, 14.2, 10.3, 6.6, 4.8]
+      }
+   ];
+
+   var json = {};
+
+   json.title = title;
+   json.subtitle = subtitle;
+   json.xAxis = xAxis;
+   json.yAxis = yAxis;
+   json.tooltip = tooltip;
+   json.legend = legend;
+   json.series = series;
+
+   $('#container').highcharts(json);
+});
+
+</script>
+
+</body>
+</html>

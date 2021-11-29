@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ISG文件搜索引擎-结果展示</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script> var number=0;  var flag=false;</script>  
+
+</head>
+<body>
+    <h1>搜索你要的文件</h1>
+    <i> {{update_time}}</i>>
+    <form action="" method="POST">
+
+        <i>文件名包含的字符：</i>
+        <input type="text" name="fileName">
+        </datalist>
+        
+        <!--
+        <i>文件大小：</i>
+        <input type="text" name="fileSize">
+        </datalist>
+
+        <action="demo-form.php">
+            时间: <input type="date" name="fileTime">
+        -->
+        <input type="submit" style="margin-top:10px;"/>
+
+        <div id="container" style="width: 550px; height: 10px; margin: 10px"></div>
+    </form>
+    <br>
+    <h2>{{userinput}}</h2>
+    <p>执行结果:<br>
+        <table width="1000" cellspacing="1" id="table1" style="font-size:14px; border:1px solid #cad9ea;">
+        </table>
+        {% for set in resultInfo %}
+        <p hidden="hidden" name="input">{{set}}</p>   
+        <script>
+                        
+            function addRow(){
+                var myParagragh = document.getElementsByName("input")[number];
+                console.log(number);
+                debugger;
+                var recordStr = myParagragh.innerHTML;
+                //var recordStr = document.getElementById("input").innerHTML;
+                console.log("--------");
+                console.log(recordStr);
+                    
+                var oneRecord = recordStr.split(",");
+                //添加一行
+                var newTr=table1.insertRow(table1.rows.length);
+                //添加两列
+                var newIndex=newTr.insertCell();
+                var newName=newTr.insertCell();
+                var newTime=newTr.insertCell();
+                var newSize=newTr.insertCell();
+                var newPath=newTr.insertCell();
+                //设置列内容和属性
+
+                newIndex.innerText=number;
+                newName.innerText=oneRecord[0];
+                newTime.innerText=oneRecord[1];
+                newSize.innerText=oneRecord[2];
+                newPath.innerText=oneRecord[3];
+                
+                if(flag){
+                    newTr.style.backgroud="E0FFFF";
+                  debugger;
+                }
+                else{
+                    newTr.style.backgroud="90FF90";
+                    debugger;
+                }      
+
+            }
+            addRow();
+            number++;
+            flag=!flag;
+            //document.getElementById("input").innerHTML="";
+            //var s = document.getElementById("input").innerHTML;
+            //document.getElementById("demo").innerHTML = document.getElementById("input").innerHTML;
+            
+            
+           // document.getElementById("out").innerHTML=i;   
+        </script>  
+        {% endfor %}
+    </p>
+
+    <div id="container" style="width: 550px;  margin: 200 auto">
+    <!-- 与 <img src="{{ url_for('static', filename= './images/test.jpg',_t=val1) }}" width="400" height="400" alt="你的图片被外星人劫持了～～"/> 
+    <img src="{{ url_for('static', filename= './images/t1.jpg',_t=val1) }}" alt="the 2～～"/>   <p><strong>{{set}}</strong></p> -->
+
+
+</body>
+</html>
